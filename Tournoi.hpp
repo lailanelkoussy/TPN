@@ -15,7 +15,7 @@ using namespace std;
 class Tournoi {
 
     friend ostream &operator<<(ostream &out, Tournoi &x);
-    vector<Joueur> participants;
+    vector<Joueur*> participants;
     bool tournoi_lance;
     float get_max_score();
 
