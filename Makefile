@@ -3,19 +3,19 @@ CFLAGS= -Wall
 
 all : tournoi
 
-tournoi : main.o tournoi.o partie.o joueur.o
+tournoi : main.o Tournoi.o Partie.o Joueur.o
 	$(CPP) $(CFLAGS) -o $@ $^
 
 main.o : main.cpp
 	$(CPP) $(CFLAGS) -c $<
 
-tournoi.o : Tournoi.cpp Tournoi.hpp
+Tournoi.o : Tournoi.cpp Tournoi.hpp
 	$(CPP) $(CFLAGS) -c $<
 
-partie.o : Partie.cpp Partie.hpp
+Partie.o : Partie.cpp Partie.hpp
 	$(CPP) $(CFLAGS) -c $<
 
-joueur.o : Joueur.cpp Joueur.hpp
+Joueur.o : Joueur.cpp Joueur.hpp
 	$(CPP) $(CFLAGS) -c $<
 
 clean :
