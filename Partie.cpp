@@ -22,7 +22,7 @@ void Partie::lance_partie(Joueur& joueur1, Joueur& joueur2) {
     cout << *this;
     for (int i = 0; i < 9; i++) {
         //i% 2 = quel joueur
-        joueur = (i % 2) ? x : o;
+        joueur = (i % 2) ? o : x;
         string joueur_id = (joueur == x)? joueur1.get_identifiant(): joueur2.get_identifiant();
         cout << "C'est le tour de " << joueur_id << endl;
         //verification de l'entree
@@ -74,15 +74,15 @@ void Partie::jouer(Symb&  n , int&  i, int&  j){
 //Check si joueur jouant avec j1 est gagnant
 bool Partie::gagnant(Symb& j1) {
     //|..
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 3; i++)
         if (grille[i][0] == j1 && grille[i][1] == j1 && grille[i][2] == j1)
             return true;
     // ___
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 3; i++)
         if (grille[0][i] == j1 && grille[1][i] == j1 && grille[2][i] == j1)
             return true;
 
-    if (grille[0][0] == j1 && grille[1][1] == j1 && grille[1][1] == j1)
+    if (grille[0][0] == j1 && grille[1][1] == j1 && grille[2][2] == j1)
         return true;
     if (grille[0][2] == j1 && grille[1][1] == j1 && grille[2][0] == j1)
         return true;
@@ -92,7 +92,7 @@ bool Partie::gagnant(Symb& j1) {
 
 
 void Partie::joueur_a_gagne(Joueur &joueur) {
-    float score = 9.0 / (nb_de_coups + nb_de_coups % 2);
+    float score = 9.0 / (nb_de_coups + (nb_de_coups % 2));
     joueur.mettre_a_jour_score_total(score);
     joueur.mettre_a_jour_score_tournoi(score);
 
@@ -105,5 +105,6 @@ void Partie::clean_up() {
         }
 
     }
+    nb_de_coups = 0;
 
 }
